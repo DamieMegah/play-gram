@@ -1,0 +1,271 @@
+:root{
+  --primary-color: #3390EC;       /* Telegram Blue (Action items) */
+  --primary-hover: #24A1DE;      /* Slightly darker for hover states */
+  --accent-color: #FFD700;       /* Star ratings / IMDB style */
+  --accent-danger: #E50914;     /* Optional: "Live" or "Trending" red */
+
+  /* Backgrounds */
+  --bg-nav: #0F172A;           /* Deep Navy (Body background) */
+  --bg-card: #1E293B;           /* Lighter Navy (Movie cards/Modals) */
+  --bg-main: #01030c;            /* Near Black (Navbar/Sidebar) */
+
+  /* Typography */
+  --text-main: #F8FAFC;         /* Off-white for readability */
+  --text-muted: #94A3B8;   /* Slate gray for meta-data (Year, Genre) */
+}
+
+
+.navbar {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    gap: 4rem;
+    padding: 0.4rem 2rem;
+    background-color: var(--bg-nav);
+    font-size: 1.1rem;
+  
+}
+
+.space{
+    display:none;
+}
+
+
+
+.nav-logo-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+   
+    
+}
+
+
+.desktop-search{
+  justify-self: center;
+    
+}
+
+.mobile-search-trigger{
+    display:none;
+}
+.navbar-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-self: flex-end;
+}
+
+
+.icon-default {
+    text-decoration: none;
+    color: var(--text-main);
+  
+   
+}
+
+/* Active Link State */
+.icon-active {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.icon-default:hover {
+    color: var(--primary-hover);
+}
+
+.desktop-only {
+    display: block; 
+}
+
+/* Hide mobile icons on desktop */
+.icon-container {
+    display: none;
+}
+
+.mobile-search-overlay, .mobile-back-trigger {
+    display: none;
+}
+
+/* --- Mobile View (720px and below) --- */
+@media (max-width: 720px) {
+
+    .desktop-search {
+        display: none;
+    }
+
+    .navbar{
+        display: flex;
+    }
+
+    .space{
+    display:flex;
+    width:40px;
+}
+
+  
+   
+    .nav-logo-wrapper, .mobile-search-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        background: var(--bg-nav);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1001;
+        border-bottom: 1px solid var(--bg-card);
+        gap: 0;
+    }
+
+   .mobile-search-overlay {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 8px 4px;
+        animation: sharpFade 0.3s ease-out;
+    }
+
+    @keyframes sharpFade {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close-search {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    padding: 0 10px;
+    cursor: pointer;
+}
+
+.close-search.active {
+    color: var(--primary-color);
+}
+
+      .mobile-search-trigger {
+      cursor: pointer;
+      padding: 10px; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+       transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+       position: fixed;
+        right: 1.45rem;
+        top: 1rem;
+        z-index: 1002;
+    }
+
+    
+      .mobile-back-trigger {
+        cursor: pointer;
+      padding: 10px; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+       transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+       position: fixed;
+        left: 1.45rem;
+        top: 1rem;
+        z-index: 1002;
+
+    }
+
+    .mobile-back-trigger:hover .icon-back,   .mobile-search-trigger:hover .icon-search {
+    color: var(--primary-color);
+    transform: translateX(-4px);
+}
+
+/* Haptic shrink on click */
+.mobile-back-trigger:active  .mobile-search-trigger{
+    transform: scale(0.85);
+    opacity: 0.7;
+}
+
+
+.icon-search, .icon-back{
+ color: var(--text-main);
+ transform: scale(1.2);
+
+}
+
+
+    /* Fixed Bottom Navbar */
+    .navbar-links {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 75px;
+        background: var(--bg-nav);
+        display: flex;
+        flex-direction: row; /* Ensure horizontal on mobile */
+        justify-content: space-around;
+        align-items: center;
+        z-index: 1000;
+        border-top: 1px solid var(--bg-card);
+        gap: 0;
+    }
+
+    /* Hide Desktop Text */
+    .nav-text {
+        display: none;
+    }
+
+ 
+    .icon-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 0.7rem;
+        gap: 0.5px;
+        width: 60px;
+        border-radius: 6px;
+       padding: 4px 8px;
+        transition: all 0.4s ease;
+    }
+    
+
+    /* Active State for Mobile  */
+    .icon-active .icon-container {
+        background-color: #338fec13;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        color: var(--text-main);
+        transform: scale(1.1) translateY(-2px); 
+        backdrop-filter: blur(10px); 
+        -webkit-backdrop-filter: blur(10px);
+    }
+
+    /* Hollow Icon Style */
+    .icon-outline {
+        font-size: 1.1rem;
+        fill: transparent; 
+       stroke: var(--text-main);
+       stroke-width: 30px; 
+       color: transparent; 
+       transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                background-color 0.3s ease;
+    }
+
+    .icon-active .icon-outline, .icon-active .icon-outline-p{
+    color: var(--text-main);
+    }
+     
+
+    .icon-outline a:active {
+    transform: scale(0.9); /* Shrinks when your finger is holding it down */
+    transition: transform 0.1s ease; 
+}
+}

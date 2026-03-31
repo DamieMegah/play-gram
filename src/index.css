@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;700;900&display=swap');
+
+:root {
+  /* Font Families */
+  --font-heading: 'Bebas Neue', sans-serif; /* For Movie Titles & Buttons */
+  --font-body: 'Inter', sans-serif;      /* For Descriptions & Meta-data */
+
+  /* Font Scaling */
+  --fs-hero: 3rem;   /* 48px approx */
+  --fs-title: 1.5rem; /* 24px approx */
+  --fs-body: 1rem;    /* 16px approx */
+}
+:root{
+  --primary-color: #3390EC;       /* Telegram Blue (Action items) */
+  --primary-hover: #24A1DE;      /* Slightly darker for hover states */
+  --accent-color: #FFD700;       /* Star ratings / IMDB style */
+  --accent-danger: #E50914;     /* Optional: "Live" or "Trending" red */
+
+  /* Backgrounds */
+  --bg-nav: #0F172A;           /* Deep Navy (Body background) */
+  --bg-card: #1E293B;           /* Lighter Navy (Movie cards/Modals) */
+  --bg-main: #01030c;            /* Near Black (Navbar/Sidebar) */
+
+  /* Typography */
+  --text-main: #F8FAFC;         /* Off-white for readability */
+  --text-muted: #94A3B8;   /* Slate gray for meta-data (Year, Genre) */
+}
+
+body{
+   margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-align:center;
+    background-color: var(--bg-main);
+    color: var(--text-main) ;
+   font-family: var(--font-body);
+  }

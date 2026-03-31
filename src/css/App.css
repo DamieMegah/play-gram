@@ -1,0 +1,33 @@
+
+.app-container{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-align:center;
+}
+
+/* Apply to all clickable elements */
+a, 
+button, 
+.nav-link, 
+.icon-container {
+    /* 1. Removes the blue box on mobile tap (Chrome/Safari) */
+    -webkit-tap-highlight-color: transparent;
+
+    /* 2. Removes the dotted/solid outline on desktop click */
+    outline: none;
+}
+
+/* 3. Handle accessibility: Keep the outline ONLY for keyboard users */
+a:focus-visible, 
+button:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+@media (max-width: 720px) {
+  main, .content-container {
+    padding-top: 80px;    /* Prevents logo from covering top movies */
+    padding-bottom: 90px; /* Prevents nav from covering bottom movies */
+  }
+}

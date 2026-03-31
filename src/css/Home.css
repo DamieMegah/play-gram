@@ -1,0 +1,17 @@
+.home{
+ width: 100vw;
+}
+
+.movie-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    margin-top: 10px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.9rem 3.2rem;
+    gap: 0.5rem;
+    overflow: hidden;
+}
+
+
+   
