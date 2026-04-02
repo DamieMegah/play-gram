@@ -1,7 +1,7 @@
 import "../css/MovieCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faHeart } from "@fortawesome/free-solid-svg-icons";
-import testPic from "../assets/test-pic.jpg";
+import testPic from "../assets/john-wick.jpg";
 
 function MovieCard({ movie }) {
   function handleHeart() {
@@ -10,7 +10,10 @@ function MovieCard({ movie }) {
   return (
     <div className="movie-card">
       <div className="movie-poster">
-        <img src={testPic} alt={movie.title} />
+        <img
+          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+          alt={movie.title}
+        />
         <div className="movie-overlay">
           <button onClick={handleHeart}>
             <FontAwesomeIcon icon={faHeart} className="fav-icon" />

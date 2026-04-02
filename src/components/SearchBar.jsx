@@ -2,20 +2,47 @@ import { useState, useRef, useEffect } from "react";
 import "../css/SearchBar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import Loading from "./Loading";
+import { searchMovies } from "../services/api";
+import { useMovieContext } from "../contexts/MovieContext";
 
 function SearchBar({ onClose }) {
   const [searchQuery, setSearchQuery] = useState("");
-  function handleSearch(e) {
+  const { setMovies, setLoading, loading, setError } = useMovieContext();
+
+  const handleSearch = async (e) => {
     e.preventDefault();
-    alert(searchQuery);
-  }
+
+    if (!searchQuery.trim()) {
+      return;
+    }
+    if (loading) {
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const searchResults = await searchMovies(searchQuery);
+
+      if (searchResults.length === 0) {
+        setError("No movies found for that search.");
+        setMovies([]);
+      } else {
+        setMovies(searchResults);
+        setError(null);
+      }
+    } catch (err) {
+      console.error(err);
+      setError("Failed to search movies...");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const inputRef = useRef(null);
 
   useEffect(() => {
     console.log("runing");
-    // requestAnimationFrame is more reliable than setTimeout(0)
-    // for focusing elements after a state change.
     const animationFrame = requestAnimationFrame(() => {
       if (inputRef.current) {
         inputRef.current.focus();

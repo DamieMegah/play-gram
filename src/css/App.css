@@ -18,6 +18,19 @@ button,
     outline: none;
 }
 
+
+.app-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; 
+}
+
+.main-content {
+  flex: 1; 
+  overflow-y: auto; 
+  -webkit-overflow-scrolling: touch;
+}
 /* 3. Handle accessibility: Keep the outline ONLY for keyboard users */
 a:focus-visible, 
 button:focus-visible {

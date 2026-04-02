@@ -154,5 +154,21 @@ img {
   color: var(--accent-color);
   font-size: 0.8rem;
   margin: 0 1px;
-  filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.3));
+  filter: drop-shadow(0 0 2px rgba(255, 215, 0, 0.5));
+}
+
+@media (max-width:720px) {
+  .movie-card {
+        width: 100%; /* Ensure card fills the column */
+        max-width: 400px; /* Prevent it from getting too wide on tablets */
+        margin: 0 auto; /* Center the card */
+    }
+
+    .title-box{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0;
+    }
+  
 }

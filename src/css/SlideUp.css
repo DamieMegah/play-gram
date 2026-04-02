@@ -1,0 +1,72 @@
+.slide-up-container{
+    opacity: 0;
+    display: none;
+}
+
+.slide-up-container.scrolled{
+     display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 90px; /* Sits above your WhatsApp-style bottom nav */
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: var(--primary-color); /* Telegram Blue */
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1002;
+    opacity: 1;
+    box-shadow: 0 4px 15px rgba(51, 144, 236, 0.4);
+    animation: appearBounce 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: transform 0.2s ease-out;
+     -webkit-tap-highlight-color: transparent;
+     outline: none;
+    
+}
+
+.slide-up-container:hover {
+    transform: scale(1.1);
+}
+
+.icon-stack {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.arrow-main {
+    color: white;
+    font-size: 1.2rem;
+    z-index: 2;
+    animation: jump 2s infinite;
+}
+
+.arrow-shadow {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 1.2rem;
+    top: 4px;
+    z-index: 1;
+    animation: jump 2s infinite;
+    animation-delay: 0.1s;
+}
+
+/* Keyframes */
+@keyframes appearBounce {
+    0% { transform: scale(0) translateY(100px); opacity: 0; }
+    100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+@keyframes jump {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-8px);
+    }
+    60% {
+        transform: translateY(-4px);
+    }
+}

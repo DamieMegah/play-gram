@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import "../css/NavBar.css";
 import Logo from "./Logo.jsx";
 import SearchBar from "./SearchBar.jsx";
+import { useMovieContext } from "../contexts/MovieContext"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
@@ -13,24 +14,24 @@ import {
   faPlay,
 } from "@fortawesome/free-solid-svg-icons";
 
-function Navbar() {
+function Navbar({ isScrolled }) {
   const navigate = useNavigate();
   const Location = useLocation();
   const [canGoBack, setCanGoBack] = useState(false);
   const [isSearchActive, setIsSearchActive] = useState(false);
+  const { restoreHome } = useMovieContext();
+
   const handleSearchIcon = () => {
     setIsSearchActive(true);
   };
-
 
   const handleCloseSearch = () => {
     setIsSearchActive(false);
   };
   useEffect(() => {
     if (isSearchActive) {
-    setCanGoBack(false);
-  }
-  else if (window.history.length > 1 && Location.pathname !== "/") {
+      setCanGoBack(false);
+    } else if (window.history.length > 1 && Location.pathname !== "/") {
       setCanGoBack(true);
     } else {
       setCanGoBack(false);
@@ -47,7 +48,7 @@ function Navbar() {
           <FontAwesomeIcon icon={faArrowLeftLong} className="icon-back" />
         </div>
       ) : (
-        <div className="space"></div> 
+        <div className="space"></div>
       )}
       {!isSearchActive && (
         <div className="nav-logo-wrapper">
@@ -72,12 +73,13 @@ function Navbar() {
         </div>
       )}
 
-      <div className="navbar-links">
+      <div className={`navbar-links ${isScrolled ? "scrolled" : ""}`}>
         <NavLink
           to="/"
           className={({ isActive }) =>
             isActive ? "icon-active" : "icon-default"
           }
+          onClick={restoreHome}
         >
           <span className="nav-text">Home</span>
           <div className="icon-container">
