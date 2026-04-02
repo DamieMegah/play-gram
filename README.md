@@ -2,8 +2,8 @@ Playgram
 A high-end, cinematic movie discovery platform built with React and Vite.
 
 Playgram is designed for film enthusiasts who value a sharp, "Apple-style" user interface. It features a custom-built search experience, fluid "glass wave" hover interactions, and a fully responsive navigation system.
-![Desktop UI](./src/assets/pc-view.png)
-<img src="assets/mobile-view.png" alt="Mobile UI" width="400">
+<img src="./src/assets/pc-view.png" alt="Destop UI" width="400">
+<img src="./src/assets/mobile-view.png" alt="Mobile UI" width="400">
 Features
 Pro Search Interface: A seamless, auto-focusing search bar that replaces the logo on mobile for a focused user experience.
 
