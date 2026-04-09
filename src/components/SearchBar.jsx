@@ -2,17 +2,18 @@ import { useState, useRef, useEffect } from "react";
 import "../css/SearchBar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import Loading from "./Loading";
+import { useNavigate } from "react-router-dom";
 import { searchMovies } from "../services/api";
 import { useMovieContext } from "../contexts/MovieContext";
 
 function SearchBar({ onClose }) {
   const [searchQuery, setSearchQuery] = useState("");
   const { setMovies, setLoading, loading, setError } = useMovieContext();
+  const navigate = useNavigate();
 
   const handleSearch = async (e) => {
     e.preventDefault();
-
+    await navigate("/");
     if (!searchQuery.trim()) {
       return;
     }
@@ -42,7 +43,6 @@ function SearchBar({ onClose }) {
   const inputRef = useRef(null);
 
   useEffect(() => {
-    console.log("runing");
     const animationFrame = requestAnimationFrame(() => {
       if (inputRef.current) {
         inputRef.current.focus();

@@ -1,18 +1,3 @@
-:root{
-  --primary-color: #3390EC;       /* Telegram Blue (Action items) */
-  --primary-hover: #24A1DE;      /* Slightly darker for hover states */
-  --accent-color: #FFD700;       /* Star ratings / IMDB style */
-  --accent-danger: #E50914;     /* Optional: "Live" or "Trending" red */
-
-  /* Backgrounds */
-  --bg-nav: #0F172A;           /* Deep Navy (Body background) */
-  --bg-card: #1E293B;           /* Lighter Navy (Movie cards/Modals) */
-  --bg-main: #01030c;            /* Near Black (Navbar/Sidebar) */
-
-  /* Typography */
-  --text-main: #F8FAFC;         /* Off-white for readability */
-  --text-muted: #94A3B8;   /* Slate gray for meta-data (Year, Genre) */
-}
 
 
 .navbar {
@@ -23,6 +8,7 @@
     padding: 0.4rem 2rem;
     background-color: var(--bg-nav);
     font-size: 1.1rem;
+    z-index: 100000;
   
 }
 
@@ -229,7 +215,7 @@
   height: 60px;
 }
 
-    /* Hide Desktop Text */
+   
     .nav-text {
         display: none;
     }
@@ -243,12 +229,12 @@
         gap: 0.5px;
         width: 60px;
         border-radius: 6px;
-       padding: 4px 8px;
+       padding: 8px 8px;
         transition: all 0.4s ease;
     }
     
 
-    /* Active State for Mobile  */
+  
     .icon-active .icon-container {
         background-color: #338fec13;
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
@@ -258,7 +244,7 @@
         -webkit-backdrop-filter: blur(10px);
     }
 
-    /* Hollow Icon Style */
+    
     .icon-outline {
         font-size: 1.1rem;
         fill: transparent; 
@@ -269,13 +255,21 @@
                 background-color 0.3s ease;
     }
 
+
+
     .icon-active .icon-outline, .icon-active .icon-outline-p{
     color: var(--text-main);
     }
      
 
     .icon-outline a:active {
-    transform: scale(0.9); /* Shrinks when your finger is holding it down */
+    transform: scale(0.9); 
     transition: transform 0.1s ease; 
 }
+.search-style {
+  color: var(--accent-color);
+  transform: scale(1.2);
+  animation: fa-bounce 2s infinite;
+}
+
 }

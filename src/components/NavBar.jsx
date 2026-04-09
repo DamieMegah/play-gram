@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import "../css/NavBar.css";
 import Logo from "./Logo.jsx";
 import SearchBar from "./SearchBar.jsx";
-import { useMovieContext } from "../contexts/MovieContext"
+import { useMovieContext } from "../contexts/MovieContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
@@ -28,6 +28,11 @@ function Navbar({ isScrolled }) {
   const handleCloseSearch = () => {
     setIsSearchActive(false);
   };
+
+  useEffect(() => {
+    setIsSearchActive(false);
+  }, [navigate]);
+
   useEffect(() => {
     if (isSearchActive) {
       setCanGoBack(false);
@@ -83,8 +88,13 @@ function Navbar({ isScrolled }) {
         >
           <span className="nav-text">Home</span>
           <div className="icon-container">
-            <FontAwesomeIcon icon={faHome} className="icon-outline" />
-            <p className="icon-outline-p">Home</p>
+            <FontAwesomeIcon
+              icon={isSearchActive ? faSearch : faHome}
+              className={`icon-outline ${isSearchActive ? "search-style" : ""}`}
+            />
+            <p className="icon-outline-p">
+              {isSearchActive ? "Search" : "Home"}
+            </p>
           </div>
         </NavLink>
 

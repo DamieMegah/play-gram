@@ -1,10 +1,11 @@
 import Home from "./pages/Home";
 import { Route, Routes } from "react-router-dom";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import "./css/App.css";
 import Favourite from "./pages/Favourites";
 import NavBar from "./components/NavBar";
 import SlideUp from "./components/SlideUp";
+import MovieInfo from "./components/MovieInfo";
 
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,6 +36,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/favourite" element={<Favourite />} />
+          <Route path="/movie/:id" element={<MovieInfo />} />
         </Routes>
       </main>
     </div>

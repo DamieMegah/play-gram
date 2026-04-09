@@ -9,10 +9,9 @@
   --fs-hero: 3rem;   /* 48px approx */
   --fs-title: 1.5rem; /* 24px approx */
   --fs-body: 1rem;    /* 16px approx */
-}
-:root{
+
   --primary-color: #3390EC;       /* Telegram Blue (Action items) */
-  --primary-hover: #24A1DE;      /* Slightly darker for hover states */
+  --primary-hover: #1e79a7;      /* Slightly darker for hover states */
   --accent-color: #FFD700;       /* Star ratings / IMDB style */
   --accent-danger: #E50914;     /* Optional: "Live" or "Trending" red */
 

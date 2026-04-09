@@ -1,21 +1,34 @@
 import "../css/MovieCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faHeart } from "@fortawesome/free-solid-svg-icons";
-import testPic from "../assets/john-wick.jpg";
-
+import { useMovieContext } from "../contexts/MovieContext";
+import { NavLink } from "react-router-dom";
 function MovieCard({ movie }) {
-  function handleHeart() {
-    alert("movie is like");
+  //star rating logic
+  const ratingOutOfFive = Math.round(movie.vote_average / 2);
+  const stars = [1, 2, 3, 4, 5];
+
+  const { isFavourite, addToFavourites, removeFromFavourites } =
+    useMovieContext();
+
+  const favourite = isFavourite(movie.id);
+  function handleHeart(e) {
+    e.preventDefault();
+    if (favourite) removeFromFavourites(movie.id);
+    else addToFavourites(movie);
   }
   return (
-    <div className="movie-card">
+    <NavLink to={`/movie/${movie.id}`} className="movie-card">
       <div className="movie-poster">
         <img
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
           alt={movie.title}
         />
         <div className="movie-overlay">
-          <button onClick={handleHeart}>
+          <button
+            onClick={handleHeart}
+            className={`heartBtn ${favourite ? "active" : ""}`}
+          >
             <FontAwesomeIcon icon={faHeart} className="fav-icon" />
           </button>
         </div>
@@ -26,14 +39,17 @@ function MovieCard({ movie }) {
           <p>({movie.release_date})</p>
         </div>
         <div className="rating">
-          <FontAwesomeIcon icon={faStar} className="star" />
-          <FontAwesomeIcon icon={faStar} className="star" />
-          <FontAwesomeIcon icon={faStar} className="star" />
-          <FontAwesomeIcon icon={faStar} className="star" />
-          <FontAwesomeIcon icon={faStar} className="star" />
+          {stars.map((s) => (
+            <FontAwesomeIcon
+              key={s}
+              icon={faStar}
+              className={s <= ratingOutOfFive ? "star active" : "star inactive"}
+            />
+          ))}
+          <span className="rating-num">{movie.vote_average.toFixed(1)}</span>
         </div>
       </div>
-    </div>
+    </NavLink>
   );
 }
 

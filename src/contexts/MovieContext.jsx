@@ -1,12 +1,36 @@
-import { createContext, useState, useContext } from "react";
+import { parse } from "@fortawesome/fontawesome-svg-core";
+import { createContext, useState, useContext, useEffect } from "react";
 
 const MovieContext = createContext();
 export const MovieProvider = ({ children }) => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [favourites, setFavourites] = useState([]);
 
-  // Helper function to restore Home without an API call
+  useEffect(() => {
+    const storedFavs = localStorage.getItem("favourites");
+    if (storedFavs) setFavourites(JSON.parse(storedFavs));
+  }, []);
+
+  useEffect(() => {
+    if (favourites.length > 0) {
+      localStorage.setItem("favourites", JSON.stringify(favourites));
+    }
+  }, [favourites]);
+
+  const addToFavourites = (movie) => {
+    setFavourites((prev) => [...prev, movie]);
+  };
+
+  const removeFromFavourites = (movieId) => {
+    setFavourites((prev) => prev.filter((movie) => movie.id !== movieId));
+  };
+
+  const isFavourite = (movieId) => {
+    return favourites.some((movie) => movie.id === movieId);
+  };
+  // Helper function to restore rev =>prev.filter(Home without an API call
   const restoreHome = () => {
     const cachedMovies = localStorage.getItem("popular_movies");
     if (cachedMovies) {
@@ -18,6 +42,10 @@ export const MovieProvider = ({ children }) => {
   return (
     <MovieContext.Provider
       value={{
+        favourites,
+        addToFavourites,
+        removeFromFavourites,
+        isFavourite,
         movies,
         setMovies,
         loading,
