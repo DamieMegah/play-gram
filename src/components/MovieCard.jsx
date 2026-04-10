@@ -17,9 +17,13 @@ function MovieCard({ movie }) {
     if (favourite) removeFromFavourites(movie.id);
     else addToFavourites(movie);
   }
+
+  const handleCardClick = () => {
+    localStorage.setItem("selected_movie", JSON.stringify(movie));
+  };
   return (
     <NavLink to={`/movie/${movie.id}`} className="movie-card">
-      <div className="movie-poster">
+      <div className="movie-poster" onClick={handleCardClick}>
         <img
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
           alt={movie.title}

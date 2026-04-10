@@ -11,6 +11,7 @@ import {
   faClock,
   faCloudDownloadAlt,
   faFrownOpen,
+  faArrowLeftLong,
 } from "@fortawesome/free-solid-svg-icons";
 import { faYoutube, faTelegram } from "@fortawesome/free-brands-svg-icons";
 import "../css/MovieInfo.css";
@@ -147,6 +148,14 @@ function MovieInfo() {
                 <FontAwesomeIcon icon={faDownload} /> Crawl / Download
               </button>
             </div>
+            <button
+              className="desktop-back"
+              onClick={() => {
+                navigate(-1);
+              }}
+            >
+              <FontAwesomeIcon icon={faArrowLeftLong} /> Go back
+            </button>
           </div>
         </div>
 

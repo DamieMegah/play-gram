@@ -299,9 +299,28 @@
   font-size: 4rem;
 }
 
+.desktop-back{
+  background: none;
+  border: none;
+  color: var(--text-main);
+  position: absolute;
+  right: 1.9rem;
+  bottom: 2rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.desktop-back:hover{
+  color: var(--text-muted);
+  text-decoration: underline;
+}
 
 
 @media (max-width: 768px) {
+
+  .desktop-back{
+    display: none;
+  }
   
 .error-message button{
   width: max-content;
