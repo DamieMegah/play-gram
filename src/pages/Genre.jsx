@@ -70,7 +70,7 @@ function Genre({ onGenreSelect }) {
       const cacheTime = localStorage.getItem(`${cacheKey}_timestamp`);
 
       const now = new Date().getTime();
-      const expiry = 7 * 24 * 60 * 60 * 1000;
+      const expiry = 60 * 60 * 1000;
 
       if (cachedData && cacheTime && now - cacheTime < expiry) {
         setLocalMovies(JSON.parse(cachedData));

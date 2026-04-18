@@ -8,6 +8,7 @@ import NavBar from "./components/NavBar";
 import SlideUp from "./components/SlideUp";
 import MovieInfo from "./components/MovieInfo";
 import SearchResults from "./components/SearchResults";
+import About from "./pages/About";
 
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -43,6 +44,7 @@ function App() {
           <Route path="/genre/:genreId" element={<Home />} />
           <Route path="/movie/:id" element={<MovieInfo />} />
           <Route path="/search" element={<SearchResults />} />
+          <Route path="/About" element={<About />} />
         </Routes>
       </main>
     </div>

@@ -23,6 +23,10 @@
   /* Typography */
   --text-main: #F8FAFC;         /* Off-white for readability */
   --text-muted: #94A3B8;   /* Slate gray for meta-data (Year, Genre) */
+
+  /* Geometry */
+  --radius-sm: 2px;
+  --radius-md: 4px;
 }
 
 body{

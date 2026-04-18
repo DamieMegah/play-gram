@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
 import { useMovieContext } from "../contexts/MovieContext";
 import Genre from "./Genre";
+import Hero from "../components/Hero";
 
 function Home() {
   const navigate = useNavigate();
@@ -37,8 +38,9 @@ function Home() {
 
     const loadPopularMovies = async () => {
       const cached = localStorage.getItem("popular_movies");
+      const cachedTime = localStorage.getItem("popular_movies_time");
 
-      if (cached) {
+      if (cached && cachedTime && Date.now() - parseInt(cachedTime) < 720000) {
         setMovies(JSON.parse(cached));
         return;
       }
@@ -47,20 +49,24 @@ function Home() {
         setLoading(true);
         const popularMovies = await getPopularMovies();
         setMovies(popularMovies);
+
+        // Store data and current timestamp
         localStorage.setItem("popular_movies", JSON.stringify(popularMovies));
+        localStorage.setItem("popular_movies_time", Date.now().toString());
       } catch (err) {
         setError("Fail to get popular movies...");
       } finally {
         setLoading(false);
       }
     };
-
     loadPopularMovies();
   }, []);
 
   return (
     <div className="home">
+      <Hero movies={movies} />
       <Genre onGenreSelect={handleGenreSelect} className="genre" />
+
       {error && <div className="error-message">{error}</div>}
 
       {loading ? (

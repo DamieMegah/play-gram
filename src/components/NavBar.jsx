@@ -130,10 +130,10 @@ function Navbar({ isScrolled }) {
             isActive ? "icon-active" : "icon-default"
           }
         >
-          <span className="nav-text">playgram</span>
+          <span className="nav-text">playCrawler</span>
           <div className="icon-container">
             <FontAwesomeIcon icon={faPlay} className="icon-outline" />
-            <p className="icon-outline-p">Playgram</p>
+            <p className="icon-outline-p">PlayCrawl</p>
           </div>
         </NavLink>
       </div>
