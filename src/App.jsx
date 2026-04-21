@@ -1,6 +1,6 @@
 import Home from "./pages/Home";
 import { Route, Routes } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import "./css/App.css";
 import Favourite from "./pages/Favourites";
 import Genre from "./pages/Genre";
@@ -12,13 +12,33 @@ import About from "./pages/About";
 
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolling, setIsScrolling] = useState(false);
   const scrollRef = useRef(null);
 
+  useEffect(() => {
+    if (!isScrolling) return;
+
+    const timeout = setTimeout(() => {
+      setIsScrolling(false);
+    }, 150);
+
+    return () => clearTimeout(timeout);
+  }, [isScrolling]);
+
+  const lastScrollTop = useRef(0);
+
   const handleScroll = () => {
-    if (scrollRef.current) {
-      const scrollTop = scrollRef.current.scrollTop;
-      setIsScrolled(scrollTop > 20);
+    if (!scrollRef.current) return;
+
+    const scrollTop = scrollRef.current.scrollTop;
+
+    setIsScrolled(scrollTop > 20);
+
+    if (scrollTop > lastScrollTop.current) {
+      setIsScrolling(true); // scrolling down
     }
+
+    lastScrollTop.current = scrollTop;
   };
 
   const handleBackToTop = () => {
@@ -32,7 +52,7 @@ function App() {
 
   return (
     <div className="app-container">
-      <NavBar isScrolled={isScrolled} />
+      <NavBar isScrolled={isScrolled} isScrolling={isScrolling} />
       {isScrolled && (
         <SlideUp isScrolled={isScrolled} onClick={handleBackToTop} />
       )}
