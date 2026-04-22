@@ -80,6 +80,14 @@ function Home() {
         <Loading />
       ) : (
         <div className="movie-grid">
+          <h2
+            className="grid-head"
+            style={{
+              display: isHome ? "none" : "block",
+            }}
+          >
+            Trending Movies
+          </h2>
           {movies.map((movie) => (
             <MovieCard movie={movie} key={movie.id} isSelected={false} />
           ))}

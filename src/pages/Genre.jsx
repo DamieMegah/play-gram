@@ -3,7 +3,6 @@ import { useLocation, useParams, useNavigate } from "react-router-dom";
 import { getGenres, getMoviesByGenre, getPopularMovies } from "../services/api";
 import MovieCard from "../components/MovieCard";
 import Loading from "../components/Loading";
-import { useMovieContext } from "../contexts/MovieContext";
 import "../css/Genre.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFire } from "@fortawesome/free-solid-svg-icons";

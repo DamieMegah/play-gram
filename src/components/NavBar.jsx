@@ -14,7 +14,7 @@ import {
   faPlay,
 } from "@fortawesome/free-solid-svg-icons";
 
-function Navbar({ isScrolling, isScrolled }) {
+function Navbar({ isScrolled }) {
   const navigate = useNavigate();
   const Location = useLocation();
   const [canGoBack, setCanGoBack] = useState(false);
@@ -78,7 +78,7 @@ function Navbar({ isScrolling, isScrolled }) {
         </div>
       )}
 
-      <div className={`navbar-links ${isScrolling ? "shrink" : ""}`}>
+      <div className={`navbar-links ${isScrolled ? "shrink" : ""}`}>
         <NavLink
           to="/"
           className={({ isActive }) =>

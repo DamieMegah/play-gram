@@ -19,27 +19,53 @@ import Logo from "../components/Logo";
 import { href } from "react-router-dom";
 
 function About() {
-  const [deferredPrompt, setDeferredPrompt] = useState(null);
-
   // PWA Installation Logic
-  useEffect(() => {
-    window.addEventListener("beforeinstallprompt", (e) => {
-      e.preventDefault();
-      setDeferredPrompt(e);
-    });
-  }, []);
+  const [prompt, setPrompt] = useState(null);
 
-  const handleInstallClick = async () => {
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      if (outcome === "accepted") setDeferredPrompt(null);
-    } else {
-      alert(
-        "To install: Use your browser menu and select 'Add to Home Screen'",
-      );
-    }
+  // init function
+  const initPWAInstall = () => {
+    const handler = (e) => {
+      e.preventDefault();
+      setPrompt(e);
+    };
+
+    window.addEventListener("beforeinstallprompt", handler);
+
+    return () => window.removeEventListener("beforeinstallprompt", handler);
   };
+
+  // trigger function
+  const triggerInstall = async () => {
+    if (!prompt) {
+      console.log("Install prompt not available");
+      return;
+    }
+
+    prompt.prompt();
+
+    const choice = await prompt.userChoice;
+
+    if (choice?.outcome === "accepted") {
+      console.log("App installed");
+    } else {
+      console.log("User dismissed install");
+    }
+
+    setPrompt(null);
+  };
+
+  useEffect(() => {
+    const handler = (e) => {
+      e.preventDefault();
+      setPrompt(e);
+    };
+
+    window.addEventListener("beforeinstallprompt", handler);
+
+    return () => {
+      window.removeEventListener("beforeinstallprompt", handler);
+    };
+  }, []);
 
   const handleShare = async () => {
     const shareData = {
@@ -86,7 +112,7 @@ function About() {
             Get the best experience with full-screen mode and instant access
             directly from your app drawer (powered by chrome browser)
           </p>
-          <button onClick={handleInstallClick} className="btn-action">
+          <button onClick={triggerInstall} className="btn-action">
             Install App
           </button>
         </div>

@@ -12,35 +12,14 @@ import About from "./pages/About";
 
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isScrolling, setIsScrolling] = useState(false);
   const scrollRef = useRef(null);
 
-  useEffect(() => {
-    if (!isScrolling) return;
-
-    const timeout = setTimeout(() => {
-      setIsScrolling(false);
-    }, 150);
-
-    return () => clearTimeout(timeout);
-  }, [isScrolling]);
-
-  const lastScrollTop = useRef(0);
-
   const handleScroll = () => {
-    if (!scrollRef.current) return;
-
-    const scrollTop = scrollRef.current.scrollTop;
-
-    setIsScrolled(scrollTop > 20);
-
-    if (scrollTop > lastScrollTop.current) {
-      setIsScrolling(true); // scrolling down
+    if (scrollRef.current) {
+      const scrollTop = scrollRef.current.scrollTop;
+      setIsScrolled(scrollTop > 20);
     }
-
-    lastScrollTop.current = scrollTop;
   };
-
   const handleBackToTop = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollTo({
@@ -52,7 +31,7 @@ function App() {
 
   return (
     <div className="app-container">
-      <NavBar isScrolled={isScrolled} isScrolling={isScrolling} />
+      <NavBar isScrolled={isScrolled} />
       {isScrolled && (
         <SlideUp isScrolled={isScrolled} onClick={handleBackToTop} />
       )}
