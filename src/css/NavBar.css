@@ -68,7 +68,7 @@
 }
 
 /* Hide mobile icons on desktop */
-.icon-container {
+.icon-container, .netflix{
     display: none;
 }
 
@@ -83,10 +83,17 @@
         display: none;
     }
 
-    .navbar{
+    .navbar {
         display: flex;
     }
+
+    .netflix{
+        display:block;
+    }
     
+     .netflix.active{
+        display:none;
+     }
 
     .space{
     display:flex;

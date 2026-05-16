@@ -110,6 +110,28 @@ function Navbar({ isScrolled }) {
             <p className="icon-outline-p">Favorites</p>
           </div>
         </NavLink>
+        <NavLink
+          to="/Netflix"
+          className={({ isActive }) =>
+            isActive ? "icon-active" : "icon-default"
+          }
+        >
+          <span className="nav-text">Neflix</span>
+          <div className="icon-container">
+            <img
+              src="/Netflix_icon.svg"
+              alt="Netflix"
+              style={{
+                borderRadius: "50%",
+                width: "50px",
+                height: "50px",
+                position: "absolute",
+                top: "-19px",
+              }}
+            />
+          </div>
+          <p className="icon-outline-p netflix">Netflix</p>
+        </NavLink>
 
         <NavLink
           to="/genre"

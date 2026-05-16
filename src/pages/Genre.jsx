@@ -7,6 +7,7 @@ import {
   getMoviesKdrama,
   getMoviesBollywood,
   getMoviesNollywood,
+  getNetflixMovies,
 } from "../services/api";
 import MovieCard from "../components/MovieCard";
 import Loading from "../components/Loading";
@@ -100,6 +101,8 @@ function Genre({ onGenreSelect }) {
           data = await getMoviesBollywood();
         } else if (genreId === "nollywood") {
           data = await getMoviesNollywood();
+        } else if (genreId === "netflix") {
+          data = await getNetflixMovies();
         } else {
           data = await getMoviesByGenre(genreId);
         }
@@ -192,21 +195,6 @@ function Genre({ onGenreSelect }) {
           )}
         </div>
       )}
-
-      <div className="genre-hero-grid">
-        {randomGenres.map((hero) => (
-          <div
-            key={hero.id}
-            className={`genre-hero-card ${Number(genreId) === hero.id ? "selected" : ""}`}
-            onClick={() => handleHeroClick(hero.id)}
-            style={{
-              backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url(${hero.image})`,
-            }}
-          >
-            <h3>{hero.name}</h3>
-          </div>
-        ))}
-      </div>
     </div>
   );
 }

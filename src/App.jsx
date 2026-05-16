@@ -11,6 +11,7 @@ import SearchResults from "./components/SearchResults";
 import About from "./pages/About";
 import InstallPWA from "./pages/InstallPWA";
 import InstallPopup from "./components/InstallPopUp";
+import Netflix from "./components/Netflix";
 
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -43,6 +44,7 @@ function App() {
           <Route path="/favourite" element={<Favourite />} />
           <Route path="/genre" element={<Genre />} />
           <Route path="/genre/:genreId" element={<Home />} />
+          <Route path="/netflix" element={<Netflix />} />
           <Route path="/movie/:id" element={<MovieInfo />} />
           <Route path="/search" element={<SearchResults />} />
           <Route path="/About" element={<About />} />
