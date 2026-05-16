@@ -6,6 +6,7 @@ import {
   getPopularMovies,
   getMoviesKdrama,
   getMoviesBollywood,
+  getMoviesNollywood,
 } from "../services/api";
 import MovieCard from "../components/MovieCard";
 import Loading from "../components/Loading";
@@ -28,6 +29,9 @@ function Genre({ onGenreSelect }) {
   const [randomGenres, setRandomGenres] = useState([]);
 
   const allHeroGenres = [
+    { id: "kdrama", name: "k-Drama", image: "/kdrama.png" },
+    { id: "bollywood", name: "Bollywood", image: "bollywood.png" },
+    { id: "nollywood", name: "Nollywood", image: "nollywood.png" },
     { id: 28, name: "Action", image: "/action.jpg" },
     { id: 35, name: "Comedy", image: "/comedy.jpg" },
     { id: 27, name: "Horror", image: "/horror.jpg" },
@@ -40,8 +44,6 @@ function Genre({ onGenreSelect }) {
     { id: 80, name: "Crime", image: "/crime.jpg" },
     { id: 99, name: "Documentry", image: "/docu.jpg" },
     { id: 14, name: "Fantasy", image: "/fantasy.jpg" },
-    { id: "kdrama", name: "k-Drama", image: "/kdrama.png" },
-    { id: "Bollywood", name: "Bollywood", image: "bollywood.png" },
   ];
 
   useEffect(() => {
@@ -94,8 +96,10 @@ function Genre({ onGenreSelect }) {
         let data;
         if (genreId === "kdrama") {
           data = await getMoviesKdrama();
-        } else if (genreId === "Bollywood") {
+        } else if (genreId === "bollywood") {
           data = await getMoviesBollywood();
+        } else if (genreId === "nollywood") {
+          data = await getMoviesNollywood();
         } else {
           data = await getMoviesByGenre(genreId);
         }
@@ -146,17 +150,22 @@ function Genre({ onGenreSelect }) {
             Trending <FontAwesomeIcon icon={faFire} className="fire" />
           </button>
           <button
-            className={`genre-btn ${genreId === "Bollywood" ? "active" : ""}`}
-            onClick={() => handleGenreClick("Bollywood")}
+            className={`genre-btn ${genreId === "bollywood" ? "active" : ""}`}
+            onClick={() => handleGenreClick("bollywood")}
           >
-            BollyWood
+            Bollywood
           </button>
-
           <button
             className={`genre-btn ${genreId === "kdrama" ? "active" : ""}`}
             onClick={() => handleGenreClick("kdrama")}
           >
             K-Drama
+          </button>
+          <button
+            className={`genre-btn ${genreId === "nollywood" ? "active" : ""}`}
+            onClick={() => handleGenreClick("nollywood")}
+          >
+            Nollywood
           </button>
           {genres.map((g) => (
             <button
@@ -183,6 +192,21 @@ function Genre({ onGenreSelect }) {
           )}
         </div>
       )}
+
+      <div className="genre-hero-grid">
+        {randomGenres.map((hero) => (
+          <div
+            key={hero.id}
+            className={`genre-hero-card ${Number(genreId) === hero.id ? "selected" : ""}`}
+            onClick={() => handleHeroClick(hero.id)}
+            style={{
+              backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url(${hero.image})`,
+            }}
+          >
+            <h3>{hero.name}</h3>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
