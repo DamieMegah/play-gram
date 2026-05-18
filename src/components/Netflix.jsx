@@ -49,6 +49,7 @@ function Netflix() {
         <span className="particle p3"></span>
         <span className="particle p4"></span>
         <span className="particle p5"></span>
+        <span className="particle p6"></span>
       </div>
 
       {/* Cinematic Header Section */}

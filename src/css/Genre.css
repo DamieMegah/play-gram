@@ -64,7 +64,6 @@
   border-color: var(--primary-color, #e50914);
 }
 
-/*GENRE PAGE STYLE (Normal/Wrap) */
 .genre-layout-active .genre-list {
   flex-wrap: wrap;
   justify-content: center;
@@ -75,7 +74,6 @@
   padding: 12px 24px; 
 }
 
-/*  HOME PAGE STYLE (Stretch/Scroll */
 .genre-layout-home {
   width: 100%;
   padding: 10px 0;
@@ -156,7 +154,7 @@
 @media (max-width: 768px) {
   .genre-layout-home {
   width: 92%;
- 
+
 }
   .genre-layout-home .genre-list {
   padding: 0 0;
@@ -164,6 +162,7 @@
   .genre-list{
     gap: 5px;
      padding: 0 0;
+     margin-left: -10px;
   }
   .genre-btn{
      font-size: 0.6rem;
@@ -197,4 +196,11 @@
   .genre-hero-card h3 {
     font-size: 1.1rem;
   }
+}
+
+@media (max-width: 378px) {
+  .genre-layout-home {
+  width: 92%;
+ margin-top: 10px;
+}
 }

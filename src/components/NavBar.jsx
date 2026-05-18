@@ -117,7 +117,7 @@ function Navbar({ isScrolled }) {
           }
         >
           <span className="nav-text">Neflix</span>
-          <div className="icon-container">
+          <div className="netflix">
             <img
               src="/Netflix_icon.svg"
               alt="Netflix"
@@ -125,12 +125,12 @@ function Navbar({ isScrolled }) {
                 borderRadius: "50%",
                 width: "50px",
                 height: "50px",
-                position: "absolute",
-                top: "-19px",
+                //   position: "absolute",
+                //   top: "-12px",
               }}
             />
+            <p className="icon-outline-p netflix">Netflix</p>
           </div>
-          <p className="icon-outline-p netflix">Netflix</p>
         </NavLink>
 
         <NavLink
