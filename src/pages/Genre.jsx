@@ -73,7 +73,7 @@ function Genre({ onGenreSelect }) {
 
   useEffect(() => {
     const shuffled = [...allHeroGenres].sort(() => 0.5 - Math.random());
-    setRandomGenres(shuffled.slice(0, 11));
+    setRandomGenres(shuffled.slice(0, 9));
   }, []);
 
   const handleHeroClick = (id) => {
