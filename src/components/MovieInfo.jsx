@@ -185,39 +185,23 @@ function MovieInfo() {
               X
             </button>
             <div className="source-grid">
-              <div
-                className="source-item yt"
-                onClick={() => handleYoutube(movie)}
-              >
-                <FontAwesomeIcon icon={faYoutube} className="youtube" />
-                <span>YouTube</span>
-              </div>
-              <div className="source-item tg">
-                <FontAwesomeIcon icon={faTelegram} className="telegram" />
-                <span>Telegram</span>
-              </div>
-              <div
-                className="source-item web" /* onClick={() => handleWeb(movie)}*/
-              >
-                <FontAwesomeIcon
-                  icon={faCloudDownloadAlt}
-                  className="web-icon"
-                />
-                <span>Web&nbsp;Crawl </span>
-                <div className="web-children">
-                  <p>Select prefered dawnload site</p>
-                  <div className="btns">
-                    <button onClick={() => handleNkiri(movie)}>
-                      The Nkiri <sub>&nbsp;(Highly recommended)</sub>
-                    </button>
-                    <button onClick={() => handleNetNaija(movie)}>
-                      NetNaija <sub>&nbsp;(Fairly recommended)</sub>
-                    </button>
-                    <button onClick={() => handleNaijaPrey(movie)}>
-                      NaijaPrey <sub>&nbsp;(Fairly recommended)</sub>
-                    </button>
-                  </div>
-                </div>
+              <div className="btns">
+                <button onClick={() => handleNkiri(movie)}>
+                  The Nkiri<sub>&nbsp;(Highly recommended)</sub>
+                </button>
+                <button onClick={() => handleNetNaija(movie)}>
+                  NetNaija <sub>&nbsp;(Fairly recommended)</sub>
+                </button>
+                <button onClick={() => handleNaijaPrey(movie)}>
+                  NaijaPrey<sub>&nbsp;(Fairly recommended)</sub>
+                </button>
+                <button
+                  className="source-item yt"
+                  onClick={() => handleYoutube(movie)}
+                >
+                  <FontAwesomeIcon icon={faYoutube} className="youtube" />{" "}
+                  &nbsp; YouTube
+                </button>
               </div>
             </div>
           </div>

@@ -104,165 +104,120 @@
     }
 
 
-
 .crawl-drawer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  max-height: 80vh; 
+  background-color: var(--bg-card);
+  border-top: 2px solid rgba(255, 255, 255, 0.05);
+  border-radius: 4px 4px 0 0; 
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
+  padding: 1.75rem;
+  z-index: 1000; 
+  box-sizing: border-box;
+  font-family: var(--font-body);
+  color: var(--text-main);
+  animation: slideUpDrawer 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.crawl-drawer h3 {
+  font-family: var(--font-heading);
+  font-size: var(--fs-title);
+  letter-spacing: 1px;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: var(--text-main);
+}
+
+.close-crawler {
   position: absolute;
-  top: 15rem;
-  left: 25.6rem;
-  background: var(--bg-card);
-  padding: 30px;
-  border-radius: 4px;
-  border: 1px solid rgba(255,255,255,0.05);
-  animation: slideUp 0.4s ease-out;
-  z-index: 400;
-   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.close-crawler{
-      position: absolute;
-      right: 0.6rem;
-      top: 0.5rem;
-      background: none;
-      color: var(--text-main);
-      border: none;
-      cursor: pointer;
-      font: var(--fs-hero);
-}
-
-.close-crawler:hover{
+  top: 1.25rem;
+  right: 1.25rem;
+  background: transparent;
+  border: none;
   color: var(--text-muted);
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.close-crawler:hover {
+  color: var(--accent-danger);
+  transform: scale(1.1);
 }
 
 .source-grid {
+  width: 100%;
+}
+
+.btns {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-  margin: 20px 0;
+  grid-template-columns: 1fr;
+  gap: 0.85rem;
 }
 
-.source-item {
-  padding: 20px;
-  background: var(--bg-main);
-  border-radius: 4px;
-  text-align: center;
+
+
+
+.btns button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background-color: var(--bg-nav);
+  color: var(--text-main);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
   cursor: pointer;
-  transition: 0.2s;
+  font-size: var(--fs-body);
+  font-weight: 500;
+  transition: all 0.25s ease;
 }
 
-.source-item.yt:hover { 
-      color: var(--accent-danger);
-      border: 1px solid var(--accent-danger);
-      transform: scale(1.01) 
-      translateY(-3px);
-     }
-.source-item.tg:hover {
-     color: var(--primary-color); 
-     border: 1px solid var(--primary-color);
-     transform: scale(1.01) 
-      translateY(-3px);
-    }
-
-    .source-item.web:hover {
-     color: var(--text-muted); 
-     border: 1px solid var(--text-muted);
-     transform: scale(1.01) 
-      translateY(-3px);
-    }
-
-
-.youtube{
-        fill: white; 
-       stroke: transparent;
-       stroke-width: 30px; 
-       color: #FF0000;
-      padding: 0;
-       transition: 0.2s;
-      filter: drop-shadow(0 0 5px rgba(229, 9, 20, 0.3));
-
+.btns button sub {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 4px;
 }
 
-.telegram{
-     fill: white; 
-       stroke: transparent;
-       stroke-width: 30px; 
-       color: var(--primary-color); 
-      padding: 0;
-       transition: 0.2s;
-      filter: drop-shadow(0 0 5px rgba(9, 112, 229, 0.3));
+.btns button:hover {
+  background-color: var(--bg-main);
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(51, 144, 236, 0.15);
 }
 
- .web-icon{
-          filter: drop-shadow(0 0 5px rgba(240, 240, 237, 0.3));
-          position: relative;
-    }
- .web-children{
-        position: absolute;
-        top: -9.4rem;
-        padding: 15px 10px;
-        background: var(--bg-main);
-        border-radius: 4px;
-        text-align: center;
-        cursor: pointer;
-        transition: 0.2s;
-        border: 1px solid var(--text-muted);
-        filter: drop-shadow(0 0 5px rgba(69, 94, 117, 0.3));
-        animation: slideUp 0.4s ease-out;
-        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        opacity: 0;
-        display: none;
-    }
+.btns button:active {
+  transform: translateY(0);
+}
 
-    .source-item.web:hover .web-children{
-        display: block;
-        opacity: 1;
-    }
+.btns button.yt {
+  border-color: rgba(229, 9, 20, 0.2);
+}
 
-    .web-children p{
-        font-size: 1.1rem;
-        font-weight: 600;
-        margin: 0;
-        color: var(--text-main);
-        text-align: center;
-        font-family: var(--font-body);
-    }
+.btns button.yt:hover {
+  border-color: var(--accent-danger);
+  box-shadow: 0 4px 12px rgba(229, 9, 20, 0.15);
+}
 
-    .btns{
-        display:flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        margin: 20px 0;
-    }
-
-    .btns button{
-        color: var(--text-main);
-        background: var(--primary-color);
-        padding: 5px;
-        width: 26rem;
-        border: none;
-        border-radius: 2px;
-        text-align: center;
-        cursor: pointer;
-        transition: 0.2s;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: var(--font-body);
-    }
-
-     .btns button:hover{
-      color: var(--text-muted);
-      background: var(--primary-hover);
-      border: 1px solid var(--text-muted);
-     }
+.btns button .youtube {
+  color: var(--accent-danger);
+  font-size: 1.25rem;
+  margin-bottom: 2px;
+}
 
 
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(20px); }
+@keyframes slideUpDrawer {
+  
+  from { opacity: 0; transform: translateY(40px); }
   to { opacity: 1; transform: translateY(0); }
-}
 
+}
 .error-message{
   text-align: center;
   margin: 8rem 0;
@@ -359,46 +314,15 @@
    line-height: 1.4;
 }
 
+.crawl-drawer {
+   bottom: 12rem;
+   border-radius: 4px; 
+}
 .action-buttons {
   gap: 8px;
 }
-
-.crawl-drawer{
-    top: 40rem;
-    left: 0;
-    padding: 14px;
-}
-
-.source-grid {
-      gap: 12px;
-}
-
-.source-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 18px;
-}
-
-.telegram, .youtube, .web-icon{
-    font-size: 2rem;
-}
-
-.btn-primary, .btn-crawl {
-  padding: 12px 22px;
-  border-radius: 4px;
-  gap: 4px;
-}
-
- .web-children{
-    top: 7.8rem;
-    left: -15.8rem;
-    width: 84vw;
- }
-
-  .btns button{
-    width: 90%;
+.btns {
+    grid-template-columns: repeat(2, 1fr);
   }
   
 }
